@@ -16,12 +16,12 @@ var db = require('./src/modules/db');  // DB config module
 
 const Route = require('./src/router/Route');
 
-const localIPAddress = '192.168.29.39';
+// const localIPAddress = '192.168.29.39';
 var port = process.env.PORT || 4016;   // Port used for user server
 var app = express()
   , server = require('http').createServer(app);;
 
-server.listen(port, localIPAddress);
+server.listen(port);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
