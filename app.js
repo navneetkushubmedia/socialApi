@@ -3,14 +3,12 @@ const os = require('os');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
+const https = require('https');
 const mongoose = require('mongoose');
-const request = require('request');
-const multer = require('multer');
 const myEnv = require('dotenv').config();
 const db = require('./src/modules/db');
 const Route = require('./src/router/Route');
-const fs = require('fs');
-const https = require('https');
 
 function getLocalIPAddress() {
   const interfaces = os.networkInterfaces();
@@ -37,30 +35,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ rejectUnauthorized: false }));
 
 app.set('port', port);
+
 app.get('/', (req, res) => {
   console.log("User Hit");
   res.send('<h1>Hello Account</h1>');
 });
+
 app.use('/', Route);
 
-
 const options = {
-  key: fs.readFileSync('./decrypted_key.pem'),   // Path to your private key file
-  cert: fs.readFileSync('./cert.pem'), // Path to your certificate file
+  key: fs.readFileSync('./decrypted_key.pem'),   // Path to your decrypted private key file
+  cert: fs.readFileSync('./cert.pem'),           // Path to your certificate file
 };
 
+// Create HTTPS server with Express app
+const server = https.createServer(options, app);
 
-const server = https.createServer(options, app).listen(port, '0.0.0.0', () => {
+server.listen(port, '0.0.0.0', () => {
   const ip = getLocalIPAddress();
   console.log(`Server running at https://${ip}:${port}/`);
 });
 
-// const server = app.listen(port, '0.0.0.0', () => {
-//   const ip = getLocalIPAddress();
-//   console.log(`Server running at http://${ip}:${port}/`);
-// });
-
-// Error handling
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
