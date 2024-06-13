@@ -45,7 +45,7 @@ app.use('/', Route);
 
 
 const options = {
-  key: fs.readFileSync('./key.pem'),   // Path to your private key file
+  key: fs.readFileSync('./decrypted_key.pem'),   // Path to your private key file
   cert: fs.readFileSync('./cert.pem'), // Path to your certificate file
 };
 
