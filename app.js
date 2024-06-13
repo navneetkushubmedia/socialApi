@@ -40,7 +40,7 @@ app.use(express.json({ rejectUnauthorized: false }));
 app.set('port', port);
 
 
-app.get('/', function (req, res) { res.send('<h1>Hello Account</h1>'); });
+app.get('/', function (req, res) { console.log("User Hit"); res.send('<h1>Hello Account</h1>'); });
 
 app.use('/', Route);
 
