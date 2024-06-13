@@ -43,11 +43,11 @@ app.get('/', (req, res) => {
 });
 app.use('/', Route);
 
-const options = {
-  key: fs.readFileSync('key.pem', 'utf8'),  // Provide the pass phrase here if needed
-  cert: fs.readFileSync('cert.pem')
-};
 
+const options = {
+  key: fs.readFileSync('./key.pem'),   // Path to your private key file
+  cert: fs.readFileSync('./cert.pem'), // Path to your certificate file
+};
 
 
 const server = https.createServer(options, app).listen(port, '0.0.0.0', () => {
