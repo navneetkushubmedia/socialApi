@@ -90,6 +90,7 @@ module.exports.login = (req, res) => {
         }
     }
     catch (error) {
+        console.log("Error", error);
         res.send({ error, success: false, message: "unknown error" });
     }
 };
