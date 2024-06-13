@@ -4,6 +4,8 @@ const Handler = require('../controller/controller');
 const jwt = require('jsonwebtoken');
 const myEnv = require('dotenv').config();
 
+const SECRET = "jua.g9Cy@$1J0R?R%$AWgesC7z.,e^R_-66PKK}vc?t'nZOM|YZLH#(bZ~a[O.C"
+
 const path = require('path');
 var multer = require('multer');
 
@@ -25,7 +27,7 @@ function validateToken(req, res, next) {
         return res.send({ success: false, statusCode: 404, message: 'Token missing' });
     }
     TokenArray = token.split(" ");
-    jwt.verify(TokenArray[1], myEnv.parsed.SECRET, (err, decoded) => {
+    jwt.verify(TokenArray[1], SECRET, (err, decoded) => {
         if (err) {
             return res.send({ success: false, statusCode: 404, message: 'Invalid token' });
         }
