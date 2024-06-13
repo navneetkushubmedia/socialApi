@@ -31,11 +31,7 @@ function getLocalIPAddress() {
 var port = process.env.PORT || 80; // Port used for user server
 
 // Load SSL certificate and key
-const options = {
-  key: fs.readFileSync('/path/to/your/private-key.pem'),
-  cert: fs.readFileSync('/path/to/your/certificate.pem'),
-  ca: fs.readFileSync('/path/to/your/ca_bundle.pem')
-};
+const options = {};
 
 var app = express(),
   server = https.createServer(options, app);
