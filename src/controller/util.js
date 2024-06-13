@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
+const SECRET = "jua.g9Cy@$1J0R?R%$AWgesC7z.,e^R_-66PKK}vc?t'nZOM|YZLH#(bZ~a[O.C"
+
 
 let hashPassword = function (password) {
   console.log("password: ", password);
@@ -16,7 +18,7 @@ let generateregisterationToken = function (id) {
   const registerationToken = jwt.sign({
       userId : id
   },
-  myEnv.parsed.SECRET,
+  SECRET,
   { expiresIn: "7d"}
   );
 
@@ -27,7 +29,7 @@ let generateToken  = function (id){
   const token = jwt.sign({
       userId : id
   },
-  myEnv.parsed.SECRET,{expiresIn : "7d" }
+  SECRET,{expiresIn : "7d" }
   );
 
   return token;
