@@ -1,7 +1,7 @@
 require('dotenv').config();
 var mongoose  =   require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb+srv://billing:Singhnavi4487@cluster0.qo4rl.mongodb.net/social');
+mongoose.connect('mongodb+srv://billing:Singhnavi4487@cluster0.qo4rl.mongodb.net/social');
 var db = mongoose.connection;
 
 // CONNECTION EVENTS
