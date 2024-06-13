@@ -44,21 +44,21 @@ app.get('/', (req, res) => {
 app.use('/', Route);
 
 
-const options = {
-  key: fs.readFileSync('./decrypted_key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
-};
+// const options = {
+//   key: fs.readFileSync('./decrypted_key.pem'),
+//   cert: fs.readFileSync('./cert.pem'),
+// };
 
 
-const server = https.createServer(options, app).listen(port, '0.0.0.0', () => {
-  const ip = getLocalIPAddress();
-  console.log(`Server running at https://${ip}:${port}/`);
-});
-
-// const server = app.listen(port, '0.0.0.0', () => {
+// const server = https.createServer(options, app).listen(port, '0.0.0.0', () => {
 //   const ip = getLocalIPAddress();
-//   console.log(`Server running at http://${ip}:${port}/`);
+//   console.log(`Server running at https://${ip}:${port}/`);
 // });
+
+const server = app.listen(port, '0.0.0.0', () => {
+  const ip = getLocalIPAddress();
+  console.log(`Server running at http://${ip}:${port}/`);
+});
 
 // Error handling
 app.use((err, req, res, next) => {
