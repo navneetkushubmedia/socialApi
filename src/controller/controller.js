@@ -85,6 +85,7 @@ module.exports.login = (req, res) => {
                     }
                 })
                 .catch(error => {
+                    console.log("DB Error", error);
                     res.send({ error, success: false, message: "DB error" });
                 })
         }
