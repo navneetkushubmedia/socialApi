@@ -165,12 +165,68 @@ module.exports.createCause = async (req, res) => {
 // Get Cause
 module.exports.getCause = async (req, res) => {
     try {
-        const causeData = await CauseModel.find({}).populate('categoryId');
+        const causeData = await CauseModel.find({ isDeleted: false }).populate('categoryId');
 
         res.send({ doc: causeData, success: true, message: "Causes get successfully" });
     }
     catch (error) {
         res.send({ error, success: false, message: "Unknown error" });
+    }
+}
+
+// Get Cause For User
+module.exports.getCauseForUser = async (req, res) => {
+    try {
+        const causeData = await CauseModel.find({ isDeleted: false, status: "Approved" }).populate('categoryId');
+
+        res.send({ doc: causeData, success: true, message: "Causes get successfully" });
+    }
+    catch (error) {
+        res.send({ error, success: false, message: "Unknown error" });
+    }
+}
+
+//Update Cause
+module.exports.updateCause = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        TokenArray = token.split(" ");
+        let { userId } = jwt.decode(TokenArray[1]);
+        let user = await LoginModel.findOne({ _id: userId });
+        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+
+
+        let existingCause = await CauseModel.findOne({ _id: req.params.Id });
+
+        existingCause.status = req.body.status;
+
+        const updatedCause = await existingCause.save();
+        return res.send({ data: updatedCause, success: true, message: "Cause updated successfully." });
+
+    } catch (error) {
+        res.send({ error, success: false, message: "Unknown error occurred." });
+    }
+}
+
+//Delete Cause
+module.exports.deleteCause = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        TokenArray = token.split(" ");
+        let { userId } = jwt.decode(TokenArray[1]);
+        let user = await LoginModel.findOne({ _id: userId });
+        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+
+
+        let existingCause = await CauseModel.findOne({ _id: req.params.Id });
+
+        existingCause.isDeleted = true;
+
+        const updatedCause = await existingCause.save();
+        return res.send({ data: updatedCause, success: true, message: "Cause deleted successfully." });
+
+    } catch (error) {
+        res.send({ error, success: false, message: "Unknown error occurred." });
     }
 }
 
@@ -248,12 +304,34 @@ module.exports.getPromotion = async (req, res) => {
         let user = await LoginModel.findOne({ _id: userId });
         if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
-        const promotionData = await PromotionModel.find({}).populate('businessId');
+        const promotionData = await PromotionModel.find({ isDeleted: false }).populate('businessId');
 
         res.send({ doc: promotionData, success: true, message: "Promotion get successfully" });
     }
     catch (error) {
         res.send({ error, success: false, message: "Unknown error" });
+    }
+}
+
+//Delete Promotion
+module.exports.deletePromotion = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        TokenArray = token.split(" ");
+        let { userId } = jwt.decode(TokenArray[1]);
+        let user = await LoginModel.findOne({ _id: userId });
+        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+
+
+        let existingPromotion = await PromotionModel.findOne({ _id: req.params.Id });
+
+        existingPromotion.isDeleted = true;
+
+        const updatedPromotion = await existingPromotion.save();
+        return res.send({ data: updatedPromotion, success: true, message: "Promotion deleted successfully." });
+
+    } catch (error) {
+        res.send({ error, success: false, message: "Unknown error occurred." });
     }
 }
 

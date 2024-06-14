@@ -49,6 +49,12 @@ router.post('/createCause', validateToken, upload.single('image'), Handler.creat
 
 router.get('/getCause', Handler.getCause);
 
+router.get('/getCauseForUser', Handler.getCauseForUser);
+
+router.put('/updateCause/:Id', validateToken, upload.none(), Handler.updateCause);
+
+router.delete('/deleteCause/:Id', validateToken, upload.none(), Handler.deleteCause);
+
 router.post('/createBusiness', validateToken, upload.none(), Handler.createBusiness);
 
 router.get('/getBusiness', validateToken, Handler.getBusiness);
@@ -56,6 +62,8 @@ router.get('/getBusiness', validateToken, Handler.getBusiness);
 router.post('/createPromotion', validateToken, upload.none(), Handler.createPromotion);
 
 router.get('/getPromotion', validateToken, Handler.getPromotion);
+
+router.delete('/deletePromotion/:Id', validateToken, upload.none(), Handler.deletePromotion);
 
 router.post('/createAlignwith', validateToken, upload.none(), Handler.createAlignwith);
 

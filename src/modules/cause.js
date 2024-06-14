@@ -15,6 +15,14 @@ const causeSchema = new mongoose.Schema({
     image: { 
         type: String, 
     },
+    status: { 
+        type: String, 
+        default: "Pending",
+    },
+    isDeleted: { 
+        type: Boolean, 
+        default: false 
+    },
   });
 
 module.exports = mongoose.model('Cause', causeSchema);

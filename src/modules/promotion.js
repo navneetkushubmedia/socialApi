@@ -12,6 +12,10 @@ const promotionSchema = new mongoose.Schema({
         ref: 'Business',
         required: true
     },
+    isDeleted: { 
+        type: Boolean, 
+        default: false 
+    },
   });
 
 module.exports = mongoose.model('Promotion', promotionSchema);
