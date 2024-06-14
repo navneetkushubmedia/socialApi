@@ -43,7 +43,7 @@ router.post('/login', upload.none(), Handler.login);
 
 router.post('/createCategory', validateToken, upload.none(), Handler.createCategory);
 
-router.get('/getCategory', validateToken, Handler.getCategory);
+router.get('/getCategory', Handler.getCategory);
 
 router.post('/createCause', validateToken, upload.single('image'), Handler.createCause);
 
