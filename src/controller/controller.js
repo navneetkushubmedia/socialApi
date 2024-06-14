@@ -256,11 +256,11 @@ module.exports.createBusiness = async (req, res) => {
 // Get Business
 module.exports.getBusiness = async (req, res) => {
     try {
-        const token = req.headers.authorization;
-        TokenArray = token.split(" ");
-        let { userId } = jwt.decode(TokenArray[1]);
-        let user = await LoginModel.findOne({ _id: userId });
-        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+        // const token = req.headers.authorization;
+        // TokenArray = token.split(" ");
+        // let { userId } = jwt.decode(TokenArray[1]);
+        // let user = await LoginModel.findOne({ _id: userId });
+        // if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
         const businessData = await BusinessModel.find({});
 
@@ -298,11 +298,11 @@ module.exports.createPromotion = async (req, res) => {
 // Get Promotion
 module.exports.getPromotion = async (req, res) => {
     try {
-        const token = req.headers.authorization;
-        TokenArray = token.split(" ");
-        let { userId } = jwt.decode(TokenArray[1]);
-        let user = await LoginModel.findOne({ _id: userId });
-        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+        // const token = req.headers.authorization;
+        // TokenArray = token.split(" ");
+        // let { userId } = jwt.decode(TokenArray[1]);
+        // let user = await LoginModel.findOne({ _id: userId });
+        // if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
         const promotionData = await PromotionModel.find({ isDeleted: false }).populate('businessId');
 
@@ -361,11 +361,11 @@ module.exports.createAlignwith = async (req, res) => {
 // Get Alignwith
 module.exports.getAlignwith = async (req, res) => {
     try {
-        const token = req.headers.authorization;
-        TokenArray = token.split(" ");
-        let { userId } = jwt.decode(TokenArray[1]);
-        let user = await LoginModel.findOne({ _id: userId });
-        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+        // const token = req.headers.authorization;
+        // TokenArray = token.split(" ");
+        // let { userId } = jwt.decode(TokenArray[1]);
+        // let user = await LoginModel.findOne({ _id: userId });
+        // if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
         const alignWithData = await AlignwithModel.find({}).populate('businessId').populate('causeId');
 
@@ -398,11 +398,11 @@ module.exports.createDonation = async (req, res) => {
 // Get Donation
 module.exports.getDonation = async (req, res) => {
     try {
-        const token = req.headers.authorization;
-        TokenArray = token.split(" ");
-        let { userId } = jwt.decode(TokenArray[1]);
-        let user = await LoginModel.findOne({ _id: userId });
-        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+        // const token = req.headers.authorization;
+        // TokenArray = token.split(" ");
+        // let { userId } = jwt.decode(TokenArray[1]);
+        // let user = await LoginModel.findOne({ _id: userId });
+        // if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
         const donationData = await DonationModel.find({}).populate('userId').populate('causeId');
 

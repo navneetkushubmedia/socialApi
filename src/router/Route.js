@@ -57,21 +57,21 @@ router.delete('/deleteCause/:Id', validateToken, upload.none(), Handler.deleteCa
 
 router.post('/createBusiness', validateToken, upload.none(), Handler.createBusiness);
 
-router.get('/getBusiness', validateToken, Handler.getBusiness);
+router.get('/getBusiness', Handler.getBusiness);
 
 router.post('/createPromotion', validateToken, upload.none(), Handler.createPromotion);
 
-router.get('/getPromotion', validateToken, Handler.getPromotion);
+router.get('/getPromotion', Handler.getPromotion);
 
 router.delete('/deletePromotion/:Id', validateToken, upload.none(), Handler.deletePromotion);
 
 router.post('/createAlignwith', validateToken, upload.none(), Handler.createAlignwith);
 
-router.get('/getAlignwith', validateToken, Handler.getAlignwith);
+router.get('/getAlignwith', Handler.getAlignwith);
 
 router.post('/createDonation', upload.none(), Handler.createDonation);
 
-router.get('/getDonation', validateToken, Handler.getDonation);
+router.get('/getDonation', Handler.getDonation);
 
 
 module.exports = router;
