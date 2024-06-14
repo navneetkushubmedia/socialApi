@@ -140,11 +140,11 @@ module.exports.getCategory = async (req, res) => {
 // Create Cause
 module.exports.createCause = async (req, res) => {
     try {
-        const token = req.headers.authorization;
-        TokenArray = token.split(" ");
-        let { userId } = jwt.decode(TokenArray[1]);
-        let user = await LoginModel.findOne({ _id: userId });
-        if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
+        // const token = req.headers.authorization;
+        // TokenArray = token.split(" ");
+        // let { userId } = jwt.decode(TokenArray[1]);
+        // let user = await LoginModel.findOne({ _id: userId });
+        // if (!user._id || user.role != "admin") return res.send({ error: {}, success: false, message: "Please login in again." });
 
         const newCause = new CauseModel({
             title: req.body.title,

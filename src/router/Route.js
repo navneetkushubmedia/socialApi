@@ -45,7 +45,7 @@ router.post('/createCategory', validateToken, upload.none(), Handler.createCateg
 
 router.get('/getCategory', Handler.getCategory);
 
-router.post('/createCause', validateToken, upload.single('image'), Handler.createCause);
+router.post('/createCause', upload.single('image'), Handler.createCause);
 
 router.get('/getCause', Handler.getCause);
 
