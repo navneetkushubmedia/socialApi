@@ -1,18 +1,16 @@
 {
-  "name": "socialweb",
+  "name": "causeapi",
   "version": "1.0.0",
-  "description": "Soacil Web Help ",
-  "main": "app.js",
+  "description": "Cause",
+  "main": "api.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Social",
-    "Web",
-    "Help"
+    "Cause"
   ],
-  "author": "Kushub",
+  "author": "Tech",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
